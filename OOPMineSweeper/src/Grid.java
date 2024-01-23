@@ -60,10 +60,11 @@ public class Grid {
 		for(int i=getNumMines();i>0;i--){
 			int heightLoc = (int)(Math.random() * (playingCells.length));
 			int widthLoc = (int)(Math.random() * (playingCells[0].length));
-			if(playingCells[heightLoc][widthLoc].isMine){
+			if(playingCells[heightLoc][widthLoc].getIsMine()){
 				i++;
 			}else{
 				playingCells[heightLoc][widthLoc].setIsMine(true);
+				playingCells[heightLoc][widthLoc].setNearbyMines(1);
 				for(int height=-1;height<=1;height++){
 					for(int width=-1;width<=1;width++){
 						int curH = heightLoc+height,curW=widthLoc+width;
@@ -76,7 +77,7 @@ public class Grid {
 						}else if(playingCells[curH][curW].getIsMine()){
 							continue;
 						}else{
-							playingCells[curH][curW].setNearbyMines((byte)(playingCells[curH][curW].getNearbyMines()+1));
+							playingCells[curH][curW].setNearbyMines((playingCells[curH][curW].getNearbyMines()+1));
 						}
 
 

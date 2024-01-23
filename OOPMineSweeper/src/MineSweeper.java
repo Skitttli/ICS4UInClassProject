@@ -4,11 +4,11 @@ public class MineSweeper {
     private Grid playingGrid;
     private Difficulty difficulty;
     private long startTime;
-    public static boolean gameOver,happyPath;
+    public static boolean gameOver,happyPath,firstTurn;
 
     public MineSweeper(String diff) {
         difficulty = new Difficulty(diff);
-
+			firstTurn=true;
         playingGrid = new Grid(difficulty.getHeight(), difficulty.getWidth());
         playingGrid.setNumMines(difficulty.getNumMines());
         playingGrid.placeMines();
@@ -30,7 +30,6 @@ public class MineSweeper {
         if(happyPath){
             System.out.println("Congratulations! You won the game!");
         }else{
-            clearScreen();
             System.out.println("You Clicked a Mine! \nGame Over!");
         }
 
@@ -57,6 +56,7 @@ public class MineSweeper {
             if(game.playingGrid.getGameOver(chosenHeight,chosenWidth)){
                 gameOver=true;
             }
+						if(game.playingGrid.getPlayingCells()[chosenHeight][chosenWidth].getNearbyMines()==0||firstTurn)
             checkAdjacent(game,chosenHeight,chosenWidth);
             
             break;
@@ -81,6 +81,7 @@ public class MineSweeper {
         clearScreen();
         System.out.println(game.playingGrid);
         System.out.println("Flags Remaining: "+game.playingGrid.getNumFlagsRemaining());
+				firstTurn=false;
     }
 
     public static void clearScreen() {  
@@ -100,7 +101,7 @@ public class MineSweeper {
                     continue;
                 }
                 Cell currentCell = game.playingGrid.getPlayingCells()[curH][curW];
-                if(!currentCell.getIsVisible()){
+                if(!currentCell.getIsVisible()&&!currentCell.getIsMine()){
                     currentCell.setIsVisible(true);
                     if(currentCell.getNearbyMines()==0){
                         checkAdjacent(game, curH, curW);

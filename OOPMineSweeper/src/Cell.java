@@ -1,5 +1,5 @@
 public class Cell {
-	byte nearbyMines; // maximum 8
+	int nearbyMines; // maximum 8
 	boolean isMine, isFlagged, isVisible;
 	String logoShow,logoHide;
 	static boolean gameOver;
@@ -15,19 +15,20 @@ public class Cell {
 
 	public void setIsFlagged(boolean isFlagged){
 		this.isFlagged = isFlagged;
-		setIsVisible(true);
-		logoShow="f";
+		setIsVisible(isFlagged);
+		logoHide="f";
+		logoShow=logoHide;
 	}
 
 	public void setIsMine(boolean isMine){
 		this.isMine = isMine;
-		logoHide="o";
+		if(this.isMine)logoHide="x";
 	}
 
 	public void setIsVisible(boolean isVisible){
 		this.isVisible = isVisible;
 		logoShow=logoHide;
-		if(this.isMine){
+		if(this.isMine&&this.isFlagged==false){
 			gameOver=true;
 		}
 	}
@@ -36,8 +37,9 @@ public class Cell {
 		return gameOver;
 	}
 
-	public void setNearbyMines(byte nearbyMines){
+	public void setNearbyMines(int nearbyMines){
 		this.nearbyMines = nearbyMines;
+		if(isMine==false)
 		logoHide=(""+nearbyMines);
 	}
 
@@ -53,7 +55,7 @@ public class Cell {
 		return isVisible;
 	}
 
-	public byte getNearbyMines(){
+	public int getNearbyMines(){
 		return nearbyMines;
 	}
 
