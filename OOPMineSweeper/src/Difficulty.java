@@ -2,9 +2,10 @@ public class Difficulty {
 	private int width, height, numMines;
 
 	public Difficulty (String difficulty) {
-		setWidth(diffToWidth(difficulty));
-		setHeight(diffToHeight(difficulty));
-		setNumMines(diffToNumMines(difficulty));
+		int[] tempValues = diffNums(difficulty);
+		setHeight(tempValues[0]);
+		setWidth(tempValues[1]);
+		setNumMines(tempValues[2]);
 	}
 
 	public int getHeight() {
@@ -31,28 +32,24 @@ public class Difficulty {
 		this.width = width;
 	}
 
-	/**
-	 * Takes a String value and turns to a width integer
-	 * @param difficulty
-	 * @return int width
-	 */
-	public static int diffToWidth(String difficulty) {
+	public static int[] diffNums(String difficulty){
+		//First Value Height, Second Width, Third Num of Mines
 		switch (difficulty) {
 			case "Easy":
 			case "easy":
 			case "E":
 			case "e":
-					return 10;
+				return new int[] {10,8,10};
 			case "Hard":
 			case "hard":
 			case "H":
 			case "h":
-				return 24;
+				return new int[] {24,20,99};
 			case "Expert":
 			case "expert":
 			case "Ex":
 			case "ex":
-				return 30;
+				return new int[] {30,24,120};
 			case "Medium":
 			case "medium":
 			case "Med":
@@ -60,107 +57,7 @@ public class Difficulty {
 			case "M":
 			case "m":
 			default:
-				return 18; 
-		}
-	}
-
-	/**
-	 * Takes a String value and turns to a height integer
-	 * @param difficulty
-	 * @return int width
-	 */
-	public static int diffToHeight(String difficulty) {
-		switch (difficulty) {
-			case "Easy":
-			case "easy":
-			case "E":
-			case "e":
-					return 8;
-			case "Hard":
-			case "hard":
-			case "H":
-			case "h":
-				return 20;
-			case "Expert":
-			case "expert":
-			case "Ex":
-			case "ex":
-				return 24;
-			case "Medium":
-			case "medium":
-			case "Med":
-			case "med":
-			case "M":
-			case "m":
-			default:
-				return 14; 
-		}
-	}
-
-	/**
-	 * Takes a String value and turns to a number of mines
-	 * @param difficulty
-	 * @return int width
-	 */
-	public static int diffToNumMines(String difficulty) {
-		switch (difficulty) {
-			case "Easy":
-			case "easy":
-			case "E":
-			case "e":
-					return 10;
-			case "Hard":
-			case "hard":
-			case "H":
-			case "h":
-				return 99;
-			case "Expert":
-			case "expert":
-			case "Ex":
-			case "ex":
-				return 120;
-			case "Medium":
-			case "medium":
-			case "Med":
-			case "med":
-			case "M":
-			case "m":
-			default:
-				return 40; 
-		}
-	}
-
-	/**
-	 * Returns a grid of the specified difficulty,
-	 * abbr. allowed (Easy, easy, E, e for example)
-	 * @param difficulty
-	 * @return {@link #Grid(int, int)}
-	 */
-	public static Grid toGrid(String difficulty) {
-		switch (difficulty) {
-			case "Easy":
-			case "easy":
-			case "E":
-			case "e":
-					return new Grid(10, 8);
-			case "Hard":
-			case "hard":
-			case "H":
-			case "h":
-				return new Grid(24, 20);
-			case "Expert":
-			case "expert":
-			case "Ex":
-			case "ex":
-				return new Grid(30, 24);
-			case "Medium":
-			case "medium":
-			case "Med":
-			case "med":
-			case "M":
-			case "m":
-			default:
-				return new Grid(18, 14); 
+				return new int[] {18,14,40};
 		}
 	}
 }
