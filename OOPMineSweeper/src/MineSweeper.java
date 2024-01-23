@@ -45,6 +45,11 @@ public class MineSweeper {
 					String chosenTile = scan.nextLine();
 					int chosenHeight = Integer.parseInt(chosenTile.replaceAll("\\D",""))-1;
 					int chosenWidth = chosenTile.replaceAll("\\d","").charAt(0)-'a';
+					if(chosenHeight>game.playingGrid.getHeight()||chosenHeight<=0||chosenWidth>game.playingGrid.getWidth()||chosenWidth<=0){
+						System.out.println("That tile doesn't exist! Try Picking a new one");
+						f=1;
+						continue;
+					}
             System.out.println("Click or Flag?");
             f=0;
             switch(scan.nextLine()){
