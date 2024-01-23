@@ -16,8 +16,13 @@ public class Cell {
 	public void setIsFlagged(boolean isFlagged){
 		this.isFlagged = isFlagged;
 		setIsVisible(isFlagged);
+		if(isFlagged){
 		logoHide="f";
 		logoShow=logoHide;
+		}else{
+		logoHide="x";
+		logoShow="-";
+		}
 	}
 
 	public void setIsMine(boolean isMine){

@@ -1,6 +1,11 @@
 //what about o for empty square, numbers for how many, and p or f for flag
-//TODO Need to Implement Tile Revealing, Front End, 
-//TODO Need a logo for revealed square with no mines adjacent to it
+//TODO Next Steps:
+    //TODO Win Condition
+    //TODO never start on a mine
+    //TODO Go Back if chose wrong tile
+    //TODO Implementation for removing a flag
+    //For this one i'm thinking that if you say flag on something that is already flagged, the flag disappears
+
 
     //!Dialogue:
     //?"Please enter a difficulty:"
