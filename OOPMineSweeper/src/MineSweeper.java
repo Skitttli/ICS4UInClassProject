@@ -38,12 +38,13 @@ public class MineSweeper {
     }
 
     public static void playTurn(Scanner scan, MineSweeper game){
-        System.out.println("Choose a tile:");
-        String chosenTile = scan.nextLine();
-        int chosenHeight = Integer.parseInt(chosenTile.replaceAll("\\D",""))-1;
-        int chosenWidth = chosenTile.replaceAll("\\d","").charAt(0)-'a';
+
         int f;
         do {
+					System.out.println("Choose a tile:");
+					String chosenTile = scan.nextLine();
+					int chosenHeight = Integer.parseInt(chosenTile.replaceAll("\\D",""))-1;
+					int chosenWidth = chosenTile.replaceAll("\\d","").charAt(0)-'a';
             System.out.println("Click or Flag?");
             f=0;
             switch(scan.nextLine()){
@@ -68,10 +69,25 @@ public class MineSweeper {
             if(game.playingGrid.getNumFlagsRemaining()==0){
                 System.out.println("You have no flags left! Please remove a flag or click a tile!");
             }else{
+							if(game.playingGrid.getPlayingCells()[chosenHeight][chosenWidth].getIsFlagged()){
+								game.playingGrid.getPlayingCells()[chosenHeight][chosenWidth].setIsFlagged(false);
+                game.playingGrid.setNumFlagsRemaining(game.playingGrid.getNumFlagsRemaining()+1);
+							}else{
                 game.playingGrid.getPlayingCells()[chosenHeight][chosenWidth].setIsFlagged(true);
                 game.playingGrid.setNumFlagsRemaining(game.playingGrid.getNumFlagsRemaining()-1);
+							}
             }
             break;
+
+						case "Back":
+						case "back":
+						case "B":
+						case "b":
+								clearScreen();
+								System.out.println(game.playingGrid);
+								System.out.println("Try typing correctly this time");
+								f=1;
+						break;
 
             default:
             System.out.println("That's not an option! Try Again");
