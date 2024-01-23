@@ -1,7 +1,8 @@
 //what about o for empty square, numbers for how many, and p or f for flag
 //TODO Next Steps:
     //TODO never start on a mine
-    //For this one i'm thinking that if you say flag on something that is already flagged, the flag disappears
+    //TODO Play Again Option
+    //TODO Fastest Time Leaderboard
 
 
     //!Dialogue:
