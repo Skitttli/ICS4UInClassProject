@@ -41,7 +41,7 @@ public class MineSweeper {
         System.out.println("Choose a tile:");
         String chosenTile = scan.nextLine();
         int chosenHeight = Integer.parseInt(chosenTile.replaceAll("\\D",""))-1;
-        int chosenWidth = chosenTile.replaceAll("\\d","").charAt(0)-97;
+        int chosenWidth = chosenTile.replaceAll("\\d","").charAt(0)-'a';
         int f;
         do {
             System.out.println("Click or Flag?");
@@ -78,9 +78,24 @@ public class MineSweeper {
             f=1;
         }
         }while(f!=0);
+				
         clearScreen();
         System.out.println(game.playingGrid);
         System.out.println("Flags Remaining: "+game.playingGrid.getNumFlagsRemaining());
+
+				if (game.playingGrid.getNumFlagsRemaining()==0) {
+					String [] bombArray=game.playingGrid.getBombArray();
+					for(int i=0;i<bombArray.length;i++){
+						String checkingTile = bombArray[i];
+						int checkingHeight = Integer.parseInt(checkingTile.replaceAll("\\D",""))-1;
+						int checkingWidth = checkingTile.replaceAll("\\d","").charAt(0)-'a';
+						if(game.playingGrid.getPlayingCells()[checkingHeight][checkingWidth].isFlagged==false){
+							break;
+						}
+					}		
+					happyPath=true;		
+					gameOver=true;
+				}
 				firstTurn=false;
     }
 

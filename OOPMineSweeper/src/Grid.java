@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Grid {
 	private int numMines, numFlagsRemaining, numUserFlags;
 	private Cell[][] playingCells;
-
+	private String[] bombLocations;
 	public Grid (int height, int width) {
 		playingCells = new Cell[height][width];
 		for (int i = 0; i < playingCells.length; i++) {
@@ -12,6 +12,10 @@ public class Grid {
 			}
 		}
 		// populate with cells
+	}
+
+	public String[] getBombArray(){
+		return bombLocations;
 	}
 
 	public int getHeight(){
@@ -57,9 +61,11 @@ public class Grid {
 	}
 
 	public void placeMines(){
-		for(int i=getNumMines();i>0;i--){
+		bombLocations=new String[getNumMines()];
+		for(int i=0;i<getNumMines();i++){
 			int heightLoc = (int)(Math.random() * (playingCells.length));
 			int widthLoc = (int)(Math.random() * (playingCells[0].length));
+			bombLocations[i] = (char)(widthLoc+96)+""+heightLoc;
 			if(playingCells[heightLoc][widthLoc].getIsMine()){
 				i++;
 			}else{
@@ -92,7 +98,7 @@ public class Grid {
 		int row =1;
 		String builder = "";
 		System.out.print("    ");
-		for(char i='a';i<=playingCells[0].length+96;i++){
+		for(char i='a';i<=playingCells[0].length+('a'-1);i++){
 			System.out.print("["+i+"]");
 		}
 		System.out.println();
