@@ -57,7 +57,7 @@ public class MineSweeper {
             if(game.playingGrid.getGameOver(chosenHeight,chosenWidth)){
                 gameOver=true;
             }
-            //checkAdjacent(game,chosenHeight,chosenWidth);
+            checkAdjacent(game,chosenHeight,chosenWidth);
             
             break;
 
@@ -102,9 +102,9 @@ public class MineSweeper {
                 Cell currentCell = game.playingGrid.getPlayingCells()[curH][curW];
                 if(!currentCell.getIsVisible()){
                     currentCell.setIsVisible(true);
-                }
-                if(currentCell.getNearbyMines()==0){
-                    checkAdjacent(game, curH, curW);
+                    if(currentCell.getNearbyMines()==0){
+                        checkAdjacent(game, curH, curW);
+                    }
                 }
             }
         }
