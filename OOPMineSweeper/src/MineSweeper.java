@@ -110,7 +110,7 @@ public class MineSweeper {
 						String checkingTile = bombArray[i];
 						int checkingHeight = Integer.parseInt(checkingTile.replaceAll("\\D",""))-1;
 						int checkingWidth = checkingTile.replaceAll("\\d","").charAt(0)-'a';
-						if(game.playingGrid.getPlayingCells()[checkingHeight][checkingWidth].isFlagged==false){
+						if(game.playingGrid.getPlayingCells()[checkingHeight][checkingWidth].getIsFlagged()==false){
 							break;
 						}
 					}		

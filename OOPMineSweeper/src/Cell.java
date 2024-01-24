@@ -1,8 +1,8 @@
 public class Cell {
-	int nearbyMines; // maximum 8
-	boolean isMine, isFlagged, isVisible;
-	String logoShow,logoHide;
-	static boolean gameOver;
+	private int nearbyMines; // maximum 8
+	private boolean isMine, isFlagged, isVisible;
+	private String logoShow,logoHide;
+	private static boolean gameOver;
 	
 	public Cell () {
 		logoShow="-";
