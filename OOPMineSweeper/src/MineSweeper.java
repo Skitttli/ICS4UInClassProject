@@ -9,6 +9,8 @@ public class MineSweeper {
 	public MineSweeper(String diff) {
 		difficulty = new Difficulty(diff);
 		firstTurn = true;
+		gameOver = false;
+		happyPath = false;
 		playingGrid = new Grid(difficulty.getHeight(), difficulty.getWidth());
 		playingGrid.setNumMines(difficulty.getNumMines());
 		playingGrid.placeMines(difficulty.getNumMines());
@@ -17,6 +19,10 @@ public class MineSweeper {
 	}
 
 	public static void main(String[] args) throws Exception {
+		playGame();
+	}
+
+	public static void playGame(){
 		clearScreen();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Please enter a difficulty:");
@@ -32,8 +38,26 @@ public class MineSweeper {
 		} else {
 			System.out.println("You Clicked a Mine! \nGame Over!");
 		}
-
 		System.out.println("Time Played: " + ((java.lang.System.currentTimeMillis() - game.startTime) / 1000) + " seconds");
+		System.out.println("Do you want to try again?");
+		switch (scan.nextLine()){
+			case "yes":
+			case "Yes":
+			case "ye":
+			case "Ye":
+			case "y":
+			case "Y":
+			playGame();
+				break;
+			
+			case "no":
+			case "No":
+			case "n":
+			case "N":
+			default: 
+				break;
+
+		}
 		scan.close();
 	}
 

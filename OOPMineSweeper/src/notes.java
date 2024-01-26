@@ -1,7 +1,4 @@
-//what about o for empty square, numbers for how many, and p or f for flag
 //TODO Next Steps:
-    //TODO never start on a mine
-    //TODO Play Again Option
     //TODO Fastest Time Leaderboard
 
 
