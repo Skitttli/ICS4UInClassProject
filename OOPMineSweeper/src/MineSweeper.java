@@ -44,6 +44,14 @@ public class MineSweeper {
 		do {
 			System.out.println("Choose a tile:");
 			String chosenTile = scan.nextLine();
+			try {
+				Integer.parseInt(chosenTile.replaceAll("\\D", ""));
+				chosenTile.replaceAll("\\d", "").charAt(0);
+			} catch (Exception e) {
+				System.out.println("That tile doesn't exist! Try Picking a new one");
+				restart = true;
+				continue;
+			}
 			int chosenHeight = Integer.parseInt(chosenTile.replaceAll("\\D", "")) - 1;
 			int chosenWidth = chosenTile.replaceAll("\\d", "").charAt(0) - 'a';
 			if (chosenHeight > game.playingGrid.getHeight() || chosenHeight < 0 || chosenWidth > game.playingGrid.getWidth()
