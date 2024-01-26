@@ -20,7 +20,11 @@ public class Cell {
 		logoHide="f";
 		logoShow=logoHide;
 		}else{
-		logoHide="x";
+			if(isMine){
+				logoHide="x";
+			}else{
+				logoHide=getNearbyMines()+"";
+			}
 		logoShow="-";
 		}
 	}
@@ -28,6 +32,10 @@ public class Cell {
 	public void setIsMine(boolean isMine){
 		this.isMine = isMine;
 		if(this.isMine)logoHide="x";
+		if(!isMine){
+			logoHide=getNearbyMines()+"";
+			logoShow=getNearbyMines()+"";
+		}
 	}
 
 	public void setIsVisible(boolean isVisible){

@@ -47,6 +47,7 @@ public class Grid {
 	
 	public void setNumMines(int numMines) {
 		this.numMines = numMines;
+		bombLocations=new String[numMines];
 	}
 
 	public void setNumUserFlags(int numUserFlags) {
@@ -60,17 +61,16 @@ public class Grid {
 		return playingCells[height][width].getGameOver();
 	}
 
-	public void placeMines(){
-		bombLocations=new String[getNumMines()];
-		for(int i=0;i<getNumMines();i++){
+	public void placeMines(int repetitions){
+		for(int i=0;i<repetitions;i++){
 			int heightLoc = (int)(Math.random() * (playingCells.length));
 			int widthLoc = (int)(Math.random() * (playingCells[0].length));
-			bombLocations[i] = (char)(widthLoc+96)+""+heightLoc;
 			if(playingCells[heightLoc][widthLoc].getIsMine()){
-				i++;
+				i--;
 			}else{
 				playingCells[heightLoc][widthLoc].setIsMine(true);
-				playingCells[heightLoc][widthLoc].setNearbyMines(1);
+				bombLocations[i]=(char)(widthLoc+'a')+""+heightLoc;
+				//playingCells[heightLoc][widthLoc].setNearbyMines(1);
 				for(int height=-1;height<=1;height++){
 					for(int width=-1;width<=1;width++){
 						int curH = heightLoc+height,curW=widthLoc+width;
@@ -80,9 +80,9 @@ public class Grid {
 							continue;
 						} else if(curW>=playingCells[0].length||curW<0){
 							continue;
-						}else if(playingCells[curH][curW].getIsMine()){
+						}/*else if(playingCells[curH][curW].getIsMine()){
 							continue;
-						}else{
+						}*/else{
 							playingCells[curH][curW].setNearbyMines((playingCells[curH][curW].getNearbyMines()+1));
 						}
 
